@@ -15,6 +15,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
+  config.action_mailer.default_url_options = { :host => 'https://eventbritealexisv2-wispy-feather-5111.fly.dev' }
+  config.action_mailer.default_options = { from: 'brevieralexis@gmail.com' }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.

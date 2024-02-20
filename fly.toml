@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for eventbritealexisv2 on 2024-02-19T18:08:28+01:00
+# fly.toml app configuration file generated for eventbritealexisv2-wispy-feather-5111 on 2024-02-20T14:53:55+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'eventbritealexisv2'
+app = 'eventbritealexisv2-wispy-feather-5111'
 primary_region = 'cdg'
 console_command = '/rails/bin/rails console'
 
