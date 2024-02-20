@@ -22,7 +22,7 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <%= link_to "Accueil", "#", class: "navbar-brand" %>
+    <%= link_to "Accueil", events_path, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -31,17 +31,20 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "Créer un événement", "#", class: "nav-link" %>
+          <%= link_to "Créer un événement", new_event_path, class: "nav-link" %>
         </li>
       </ul>
 
       <% if user_signed_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to "Mon profil", edit_user_registration_path, class: "nav-link" %>
+            <%= link_to "Modifier Password", edit_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
           <%= link_to "Déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete} %>
+          </li>
+          <li class="nav-item">
+              <%= link_to "Mon Profil", user_path(current_user), class: "nav-link" %>
           </li>
         </ul>
       <% else %>

@@ -12,6 +12,6 @@ class User < ApplicationRecord
     has_many :admin_events, foreign_key: 'admin_id', class_name: 'Event'
     has_many :participations
     has_many :attended_events, through: :participations, source: :event
-
+    has_many :events, dependent: :destroy
     
 end
