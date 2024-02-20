@@ -10,11 +10,15 @@
 
 # db/seeds.rb
 
-# Créer un utilisateur (admin) d'abord
-admin_user = User.create!(
-  email: 'admin@yopmail.com',
-  password: 'password',
-  
+# Créer des utilisateurs (admins) distincts pour chaque événement
+admin_user1 = User.create!(
+  email: 'admin1@example.com',
+  password: 'password'
+)
+
+admin_user2 = User.create!(
+  email: 'admin2@example.com',
+  password: 'password'
 )
 
 
@@ -26,7 +30,8 @@ event1 = Event.create!(
 
   price: 10,
   location: 'Centre-ville chic',
-  user: admin_user # Associer l'événement à l'utilisateur (admin)
+  admin: admin_user1,
+  user: admin_user1 # Associer l'événement à l'utilisateur (admin)
 )
 
 event2 = Event.create!(
@@ -36,7 +41,8 @@ event2 = Event.create!(
   description: "Exploration de l'art contemporain à travers une collection exclusive. Plongez dans l'univers créatif des artistes émergents et découvrez des œuvres uniques qui suscitent la réflexion. Une expérience immersive qui transcende les frontières de l'expression artistique, créant un dialogue entre le spectateur et l'art contemporain. Laissez-vous inspirer par la diversité des perspectives et explorez la richesse infinie de la créativité moderne.",
   price: 15,
   location: 'Vue panoramique',
-  user: admin_user
+  admin: admin_user2,
+  user: admin_user2
 )
 
 
