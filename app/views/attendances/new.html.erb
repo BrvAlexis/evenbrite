@@ -1,0 +1,10 @@
+<h1>Attendances#new</h1>
+<p>Find me in app/views/attendances/new.html.erb</p>
+<div class="container mt-5">
+  <h2>Rejoindre l'événement</h2>
+
+  <%= form_for [@event, @attendance], html: { class: 'form' } do |f| %>
+    <!-- Ajoutez les champs du formulaire pour les informations de paiement ici -->
+    <%= f.submit 'Payer et rejoindre l\'événement', class: 'btn btn-success' %>
+  <% end %>
+</div>
