@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   def show
    # Ajoutez le lien vers "Mon espace événement" si l'utilisateur est le créateur de l'événement
    @manage_event_link = event_path(@event) if current_user == @event.user
-   @guests_link = attendances_path(event_id: @event.id) if current_user == @event.user
+   @guests_link = event_attendances_path(event_id: @event.id) if current_user == @event.user
   end
 
   def new
