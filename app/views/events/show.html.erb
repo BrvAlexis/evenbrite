@@ -12,9 +12,11 @@
   </ul>
 </div>
 
-<% if user_signed_in? && current_user != @event.user && !current_user.attended_events.include?(@event) %>
-    <%= link_to "Rejoindre l'événement", new_attendance_path(@event), class: 'btn btn-success' %>
-  <% end %>
+<% if user_signed_in? && current_user != @event.user && !current_user.attendances.exists?(event_id: @event.id) %>
+<%= link_to "Rejoindre l'événement", new_event_attendance_path(@event), class: 'btn btn-success' %>
+
+
+<% end %>
 
 <% if current_user == @event.user %>
 <%= link_to "Mon espace événement", event_path(@event) %>

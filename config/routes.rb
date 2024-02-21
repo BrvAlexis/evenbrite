@@ -15,9 +15,10 @@ Rails.application.routes.draw do
     member do
       get 'manage'
     end
+    resources :attendances
   end
   resources :users
-  resources :attendances
+  
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'
