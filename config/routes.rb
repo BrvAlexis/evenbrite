@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     end
     resources :attendances
   end
-  resources :users
+  resources :users, only: [:show] do
+    resources :avatars, only: [:create]
+  end
   
 
   scope '/checkout' do
