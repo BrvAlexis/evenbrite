@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 ruby "3.2.2"
+gem 'better_errors'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'table_print'

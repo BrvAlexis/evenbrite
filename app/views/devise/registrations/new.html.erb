@@ -1,29 +1,79 @@
-<h2>Sign up</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Formulaire d'Inscription -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Inscription</h5>
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                        <!-- Champ Nom -->
+                        <div class="mb-3">
+                            <%= f.label :first_name, class: "form-label" %>
+                            <%= f.text_field :first_name, class: "form-control", id: "nom", placeholder: "Votre nom" %>
+                        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                        <!-- Champ Prénom -->
+                        <div class="mb-3">
+                            <%= f.label :last_name, class: "form-label" %>
+                            <%= f.text_field :last_name, class: "form-control", id: "prenom", placeholder: "Votre prénom" %>
+                        </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+                        
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                        
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+                      
 
-<%= render "devise/shared/links" %>
+                        <!-- Champ Email -->
+                        <div class="mb-3">
+                            <%= f.label :email, class: "form-label" %>
+                            <%= f.email_field :email, class: "form-control", id: "email", placeholder: "votre@email.com" %>
+                        </div>
+
+                        <!-- Champ Mot de passe -->
+                        <div class="mb-3">
+                            <%= f.label :password, class: "form-label" %>
+                            <%= f.password_field :password, class: "form-control", id: "motDePasse", placeholder: "********" %>
+                        </div>
+
+                        <!-- Confirmation de Mot de passe -->
+                        <div class="mb-3">
+                            <%= f.label :password_confirmation, class: "form-label" %>
+                            <%= f.password_field :password_confirmation, class: "form-control", id: "confirmerMotDePasse", placeholder: "********" %>
+                        </div>
+
+                        <!-- Bouton d'Inscription -->
+                        <div class="mb-3">
+                            <%= f.submit "S'inscrire", class: "btn btn-secondary" %>
+                        </div>
+
+                        <!-- Connexion avec Réseaux sociaux -->
+                        <div class="mt-3">
+                            <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                                <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter"></use></svg>
+                                Sign up with Twitter
+                              </button>
+                              <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+                                <svg class="bi me-1" width="16" height="16"><use xlink:href="#facebook"></use></svg>
+                                Sign up with Facebook
+                              </button>
+                              <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                                <svg class="bi me-1" width="16" height="16"><use xlink:href="#github"></use></svg>
+                                Sign up with GitHub
+                              </button>
+                        </div>
+                    <% end %>
+                    <div class="text-center">
+                    <%= render "devise/shared/links"%>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

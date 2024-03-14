@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%= image_tag "https://cdn.pixabay.com/photo/2017/08/03/21/48/drinks-2578446_1280.jpg", class: "card-img-top", alt: "Event Image" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= event.title %></h5>
+            <p class="card-text"><%= event.description %></p>
+            <%= link_to "En savoir plus", event_path(event), class: "btn btn-primary" %>
+          <% if @event&.user == current_user && @event.present? %>
+  <% if @event.validated? %>
+    <span class="badge badge-success">Validé</span>
+  <% elsif @event.reviewed? %>
+    <span class="badge badge-warning">En attente de validation</span>
+  <% else %>
+    <span class="badge badge-danger">Non validé</span>
+  <% end %>
+<% end %>
+
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

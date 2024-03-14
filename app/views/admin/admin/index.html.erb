@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Bienvenue sur le Dashboard Admin</h1>
+
+  <h2>Événements à valider :</h2>
+
+  <% if @event_submissions.present? %>
+  <% puts "Rendering events" %>
+    <% @event_submissions.each do |event| %>
+      <div>
+        <h3><%= event.title %></h3>
+        <p>Description : <%= event.description %></p>
+        <p>Durée : <%= event.duration %> minutes</p>
+        <!-- Ajoutez d'autres informations d'événement si nécessaire -->
+        <%= link_to 'Valider', edit_admin_event_submission_path(event), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Aucun événement à valider pour le moment.</p>
+  <% end %>
+</div>

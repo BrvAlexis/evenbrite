@@ -4,13 +4,24 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @events = Event.all.order(start_date: :asc)
+    @events = Event.order(start_date: :asc)
+    @pending_events = Event.where(validated: false, reviewed: true).order(created_at: :desc)
   end
 
+  
   def show
-   # Ajoutez le lien vers "Mon espace événement" si l'utilisateur est le créateur de l'événement
-   @manage_event_link = event_path(@event) if current_user == @event.user
-   @guests_link = event_attendances_path(event_id: @event.id) if current_user == @event.user
+
+    @event = Event.find(params[:id])
+    if @event.validated? || (@event.reviewed? && current_user == @event.user)
+      # Ajoutez le lien vers "Mon espace événement" si l'utilisateur est le créateur de l'événement
+      @manage_event_link = event_path(@event) if current_user == @event.user
+    
+      # Ajoutez le lien vers la liste des invités uniquement si l'événement est validé
+      @guests_link = event_attendances_path(event_id: @event.id) if current_user == @event.user
+    else
+      flash[:alert] = "Cet événement est en attente de validation et ne peut pas être consulté pour le moment."
+      redirect_to events_path
+    end
   end
 
   def new
@@ -18,10 +29,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
-
+    @event = current_user.events.build(event_params.merge(validated: false, reviewed: true))
+  
     if @event.save
-      redirect_to event_path(@event), notice: "L'événement a été créé avec succès."
+      flash[:notice] = "L'événement a été créé avec succès. Il est en attente de validation."
+      redirect_to events_path
     else
       render :new
     end
@@ -33,11 +45,18 @@ class EventsController < ApplicationController
   end
 
   def update
-        authorize_creator
-    if @event.update(event_params)
+    # Autoriser la mise à jour par le créateur de l'événement ou par un administrateur
+    if current_user == @event.user || current_user.admin?
+      if @event.reviewed?
+        @event.update(event_params.merge(validated: true, reviewed: true))
+      else
+        @event.update(event_params.merge(reviewed: true))
+      end
+  
       redirect_to @event, notice: 'L\'événement a été mis à jour avec succès.'
     else
-      render :edit
+      flash[:alert] = "Vous n'êtes pas autorisé à effectuer cette action."
+      redirect_to root_path
     end
   end
 
@@ -63,6 +82,7 @@ class EventsController < ApplicationController
   end
 
   def authorize_creator
+    authorize @event
     unless current_user && current_user == @event.user
       flash[:alert] = "Vous n'êtes pas autorisé à effectuer cette action."
       redirect_to root_path

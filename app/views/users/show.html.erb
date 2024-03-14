@@ -1,31 +1,35 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<h1>Profil de <%= @user.email %></h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Profil de <%= @user.email %></h2>
 
-<p><strong>Prénom:</strong> <%= @user.first_name %></p>
-<p><strong>Nom:</strong> <%= @user.last_name %></p>
-<p><strong>Description:</strong> <%= @user.description %></p>
+          <dl class="row">
+            <dt class="col-sm-3">Prénom:</dt>
+            <dd class="col-sm-9"><%= @user.first_name %></dd>
 
-<h2>Événements créés par <%= @user.email %></h2>
-<ul>
-  <% @user.admin_events.each do |event| %>
-    <li><%= link_to event.title, event_path(event) %></li>
-  <% end %>
-</ul>
+            <dt class="col-sm-3">Nom:</dt>
+            <dd class="col-sm-9"><%= @user.last_name %></dd>
 
-<% if current_user == @user %>
-  <%= link_to "Modifier le profil", edit_user_registration_path %>
-<% end %>
+            <dt class="col-sm-3">Description:</dt>
+            <dd class="col-sm-9"><%= @user.description %></dd>
+          </dl>
 
-<p>Bienvenue sur la page d'ajout d'un avatar pour le User portant l'id : <%=@user.id%></p>
-<h3>Avatar actuel</h3>
-<%if @user.avatar.attached?%>
-  <%= image_tag @user.avatar, alt: 'avatar' %>
-<%else%>
-  <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
-<%end%>
-<h3>Changer d'avatar ?</h3>
-<%= form_tag user_avatars_path(@user), multipart: true do %>
-  <%= file_field_tag :avatar %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>
+          <h3 class="mt-4">Événements créés par <%= @user.email %></h3>
+          <ul>
+            <% @user.admin_events.each do |event| %>
+              <li><%= link_to event.title, event_path(event) %></li>
+            <% end %>
+          </ul>
+
+          <% if current_user == @user %>
+            <%= link_to "Modifier le profil", edit_user_registration_path, class: "btn btn-primary" %>
+          <% end %>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

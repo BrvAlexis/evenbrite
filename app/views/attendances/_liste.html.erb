@@ -1,0 +1,23 @@
+<h1>Liste des invités</h1>
+
+<div class="container mt-5">
+  <div class="row">
+    <% @guests.each do |attendance| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= attendance.user.name %></h5>
+            <p class="card-text"><%= attendance.user.email %></p>
+            <p class="card-text">Nombre d'événements auxquels a participé: <%= attendance.user.attendances.count %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Retour à l\'événement', event_path(@event) %>
+
+<% if current_user == @event.user %>
+  <%= link_to "Modifier l'événement", edit_event_path(@event) %>
+<% end %>

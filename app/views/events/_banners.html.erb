@@ -1,0 +1,50 @@
+<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_1280.jpg" class="d-block w-100" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Bienvenue sur notre application d'événements</h1>
+                        <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
+                        <p><a class="btn btn-lg btn-secondary" href="#">Connecte-toi</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <img src="https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_1280.jpg" class="d-block w-100" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Another example headline.</h1>
+                        <p>Some representative placeholder content for the second slide of the carousel.</p>
+                        
+                        <p><%= link_to "Créer un événement", new_event_path, class: "btn btn-lg btn-secondary" %></p>
+
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://cdn.pixabay.com/photo/2023/04/03/12/59/crowd-7896788_1280.jpg" class="d-block w-100" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>One more for good measure.</h1>
+                        <p>Some representative placeholder content for the third slide of this carousel.</p>
+                        <p><a class="btn btn-lg btn-secondary" href="#">Browse gallery</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>

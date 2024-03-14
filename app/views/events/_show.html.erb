@@ -1,0 +1,91 @@
+
+<div class="container mt-5">
+  <div class="row">
+     <h2><%= @event.title %></h2>
+    <!-- Image de l'événement -->
+    <div class="col-md-8">
+      <img src="https://media.istockphoto.com/id/139561411/fr/photo/piscine-olympique.jpg?s=1024x1024&w=is&k=20&c=Mc8MBHlVf369wl5SLIeOEe64VSWSbDQ0tEA46cBa-O8=" alt="Image de l'événement" class="img-fluid">
+    </div>
+    <!-- Informations à droite de l'image -->
+    <div class="col-md-4">
+      <div class="row">
+        <!-- Nombre d'inscrits -->
+        <div class="col-md-12">
+          <p>Nombre d'inscrits : <%= @event.participants.count %></p>
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-12">
+          <p>Description de l'event: <%= @event.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+   
+
+  <div class="row mt-4">
+    <!-- Icônes et bouton pour participer -->
+    <div class="col-md-8">
+      <div class="d-flex">
+        <!-- Icônes -->
+        <span class="me-3"><i class="bi bi-calendar"></i> Début <%= @event.start_date.strftime("%d %B %Y %H:%M") %></span>
+        <span class="me-3"><i class="bi bi-calendar"></i> Fin <%= @event.end_date.strftime("%d %B %Y %H:%M") %></span>
+         <span class="me-3"><i class="bi bi-person-check"></i>Créateur : <%= @event.user.email %></span>
+        <span class="me-3"><i class="bi bi-price"></i> Prix <%= number_to_currency(@event.price) %></span>
+        <span class="me-3"><i class="bi bi-geo-alt"></i> <%= @event.location %></span>
+      </div>
+     <div class="row mt-4">
+  <!-- Bouton Participer -->
+  <div class="col-md-4">
+    <%= link_to "Participer", new_event_attendance_path(@event), class: 'btn btn-secondary mt-3 w-100' %>
+  </div>
+
+  <!-- Bouton Supprimer l'événement (pour l'organisateur) -->
+  <div class="col-md-4">
+    <% if current_user == @event.user %>
+      <%= button_to "Supprimer l'événement", @event, method: :delete, data: { confirm: "Êtes-vous sûr?" }, class: "btn btn-danger w-100 mt-3" %>
+    <% end %>
+  </div>
+
+  <!-- Bouton Liste des invités (si disponible) -->
+  <div class="col-md-4">
+    <% if @guests_link %>
+      <%= link_to "Liste des invités", @guests_link, class: 'btn btn-secondary w-100 mt-3' %>
+    <% end %>
+
+    <!-- Bouton Mon espace événement (pour l'organisateur) -->
+    <% if current_user == @event.user %>
+      <%= link_to "Mon espace événement", event_path(@event), class: "btn btn-primary w-100 mt-3" %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+<div class="row mt-4">
+ 
+
+  <!-- Icônes de réseaux sociaux et bouton Follow -->
+  <div class="col-md-4">
+    <i class="bi bi-facebook"></i>
+    <i class="bi bi-twitter"></i>
+    <i class="bi bi-instagram"></i>
+    <button class="btn btn-outline-secondary mt-3">Follow</button>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <!-- Tags -->
+  <div class="col-md-12">
+    <div class="d-flex flex-wrap">
+      <span class="badge bg-secondary me-2 mb-2">Tag1</span>
+      <span class="badge bg-secondary me-2 mb-2">Tag2</span>
+      <span class="badge bg-secondary me-2 mb-2">Tag3</span>
+    </div>
+  </div>
+</div>
+
+<%= render "comments" %>
+  

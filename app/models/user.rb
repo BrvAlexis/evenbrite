@@ -10,6 +10,10 @@ class User < ApplicationRecord
         UserMailer.welcome_email(self).deliver_now
     end
     
+    def admin?
+        admin
+    end
+
     has_many :admin_events, foreign_key: 'admin_id', class_name: 'Event'
     has_many :participations
     has_many :attendances

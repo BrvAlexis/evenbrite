@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     resources :avatars, only: [:create]
   end
   
+  namespace :admin do
+    root 'admin#index'
+    resources :event_submissions
+    # ... d'autres routes pour l'interface admin
+  end
+  
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'

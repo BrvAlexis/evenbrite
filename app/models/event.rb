@@ -8,6 +8,7 @@ class Event < ApplicationRecord
   def end_date
     start_date + duration.minutes
   end
-
+  validates :validated, inclusion: { in: [true, false] }
+  validates :reviewed, inclusion: { in: [true, false] }
 
 end

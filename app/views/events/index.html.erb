@@ -1,20 +1,8 @@
 
+<%= render "banners" %>
 
-<div class="container mt-5 text-center">
-  <div class="jumbotron">
-    <h1 class="display-4">Bienvenue sur notre application d'événements</h1>
-    <p class="lead">Découvrez les événements à venir et créez le vôtre !</p>
-    <%= link_to "Créer un événement", new_event_path, class: "btn btn-primary" %>
-  </div>
+<%= render "eventscards" %>
 
-  <ul class="list-unstyled mt-5">
-    <% @events.each do |event| %>
-      <li class="my-3">
-        <div>
-          <h5><%= event.title %></h5>
-          <%= link_to "Voir plus", event_path(event), class: "btn btn-primary" %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<%= render "littlebanners" %>
+
+  
